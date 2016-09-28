@@ -1504,7 +1504,7 @@ class LpProblem(object):
         f.write(self.objective.asCplexLpAffineExpression(objName, constant = 0))
         f.write("Subject To\n")
         ks = list(self.constraints.keys())
-        ks.sort(key=lambda x: int(x[2:]) if x[:2] == "_C" else x)
+        a.sort(key=lambda x: (x[0], int(max(re.findall(r'\d+$', x)+[0]))))
         for k in ks:
             constraint = self.constraints[k]
             if not list(constraint.keys()):
